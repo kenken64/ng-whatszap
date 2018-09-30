@@ -1,0 +1,17 @@
+<div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+    <perfect-scrollbar #chatPS class="scroll-container" fxFlex="auto" [config]="config" [scrollIndicators]="true" (psXReachEnd)="onScrollEvent($event)" (psYReachEnd)="onScrollEvent($event)" (psXReachStart)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
+      <div class="scrollable-content">
+          <div *ngFor="let chat of chats" fxLayout="column" fxLayout.xs="row" fxLayoutWrap="wrap" fxLayoutAlign="start left" fxLayoutGap="10px">
+                  <div fxFlex="100%"  class="talk-bubble tri-right round btm-left">
+                      <div class="talktext">
+                          <mat-chip-list><mat-chip>{{chat.from}}</mat-chip></mat-chip-list><br>
+                          <div *ngIf="chat.message_type==1">{{chat.message}}</div>
+                          <div *ngIf="chat.message_type==2"><img width="400" height="400" src="{{chat.imageUrl}}"></div>
+                          <br><strong>{{chat.message_date.toDate()| date:'short'}}</strong>
+                      </div>
+                  </div>
+          </div>    
+      </div>
+    </perfect-scrollbar>
+</div>
+

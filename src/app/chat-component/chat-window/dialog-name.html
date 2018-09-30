@@ -1,0 +1,14 @@
+<form #nameForm="ngForm" novalidate autocomplete="false">
+<div mat-dialog-content>
+  <p>What's your name?</p>
+  <span class="example2-fill-remaining-space">
+      <mat-form-field>
+          <input matInput id="name" name="name" required [(ngModel)]="data.name">
+      </mat-form-field>
+  </span>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button [disabled]="!nameForm.form.valid" [mat-dialog-close]="data.name" cdkFocusInitial>Let's chat</button>
+</div>
+</form>

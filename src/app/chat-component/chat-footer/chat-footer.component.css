@@ -1,0 +1,29 @@
+.chat-message-full-width {
+    width: 100%;
+}
+
+.left-align-grid {
+    position: absolute;
+    left: 5px;
+}
+
+.end-align-grid {
+    position: absolute;
+    right: 5px;
+}
+
+.example2-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+    Every toolbar row uses a flexbox row layout. */
+    flex: 1 10%;
+}
+  
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+    Every toolbar row uses a flexbox row layout. */
+    flex: 1 100%;
+}
+
+.mat-form-field-infix {
+    width: 800px !important;
+}
