@@ -18,7 +18,7 @@ export class ChatFooterComponent implements OnInit {
   name: string = null;
   isRecording: boolean = false;
   mediaRecorder: any;
-
+  
   constructor(private chatSvc: ChatService, 
     public snackBar: MatSnackBar,
     private _ngZone: NgZone) { 
