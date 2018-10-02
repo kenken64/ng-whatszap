@@ -39,6 +39,7 @@ export class ChatFooterComponent implements OnInit {
         this.mediaRecorder = new MediaRecorder(stream);
         this.mediaRecorder.ondataavailable = audioIsHere;
         this.mediaRecorder.onstop = recordStopLah;
+        window.localStream = stream;
         this.mediaRecorder.start();
         this.isRecording = true;
     });
@@ -60,6 +61,7 @@ export class ChatFooterComponent implements OnInit {
   onStopRecord(){
     console.log("stopping !");
     this.mediaRecorder.stop();
+    window.localStream.getAudioTracks()[0].stop();
     console.log(this.mediaRecorder.state);
     this.isRecording = false;
   }

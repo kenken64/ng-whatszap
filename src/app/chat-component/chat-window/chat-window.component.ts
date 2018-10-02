@@ -36,7 +36,7 @@ export class ChatWindowComponent implements OnInit{
         this.chats = results;
         this.cd.detectChanges();
         this.chatPS.directiveRef.scrollToBottom(0, 300);
-      }, 2500);
+      }, 1100);
     })
   }
 
