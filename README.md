@@ -6,6 +6,7 @@ ng add @angular/material
 npm install @angular/flex-layout --save
 ng add @angular/pwa
 npm install --save hammerjs
+npm i firebase ngx-perfect-scrollbar angular-audio-context @angular/fire —save
 ```
 
 Import all the packages from angularfire
