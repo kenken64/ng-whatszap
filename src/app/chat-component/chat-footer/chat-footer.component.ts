@@ -27,9 +27,7 @@ export class ChatFooterComponent implements OnInit {
 
   ngOnInit() {
     this.chatSvc.getUserName().subscribe((result)=>{
-      console.log("ChatFooterComponent" + result);
       this.name = result;
-      console.log(this.name);
     });
   }
 
@@ -45,16 +43,12 @@ export class ChatFooterComponent implements OnInit {
   }
 
   onStopRecord(){
-    console.log("stopping !");
     this.mediaRecorder.stop();
     window.localStream.getAudioTracks()[0].stop();
-    console.log(this.mediaRecorder.state);
     this.isRecording = false;
   }
 
   onMessage(){
-    console.log("message > " + this.messageValue);
-    console.log("message > " + this.name);
     if(typeof(this.name) !== 'undefined'){
       
       if(this.messageValue !== ''){
@@ -68,31 +62,26 @@ export class ChatFooterComponent implements OnInit {
           audioUrl: null
         }
         this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
-          console.log(result);
           this.messageValue = "";
         });
       }else{
-        console.log("messageValue is empty" + this.messageValue);
         this.snackBar.open("Kindly, please input a chat message.", "Done", {
           duration: 3500,
         });
       }
       
     }else{
-      console.log("name is null" + this.name);
       this.snackBar.open("Please enter your name, refresh this page.", "Done", {
         duration: 3500,
       });
     }
   }
   
+  // function as expression this works!
   audioIsAvailable = e =>{
-    console.log(e);
-    console.log("save to fire storage !" + JSON.stringify(e));
     let id = Guid.newGuid();
-    console.log(id);
     const filePath = `${id}.webm`;
-    console.log(this.storage);
+    console.log(filePath);
     const task = this.storage.upload(filePath, e.data);
   }
 }
