@@ -17,7 +17,10 @@ import { ChatService } from '../services/chat.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import  {DialogOverviewExampleDialog} from './chat-window/chat-window.component';
+import  { DialogOverviewExampleDialog } from './chat-window/chat-window.component';
+import  { WebcamDialog } from './chat-header/chat-header.component';
+
+import { WebCamModule } from 'ack-angular-webcam';
 
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
     PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -119,11 +122,13 @@ const routes = []
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireMessagingModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    WebCamModule
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [DialogOverviewExampleDialog, WebcamDialog],
   declarations: [
     DialogOverviewExampleDialog,
+    WebcamDialog,
     ChatWindowComponent,
     ChatFooterComponent,
     ChatHeaderComponent

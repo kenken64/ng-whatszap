@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
+import { RecordRTC }  from 'recordrtc';
 
 @Component({
   selector: 'app-chat-footer',
@@ -11,7 +12,10 @@ import {MatSnackBar} from '@angular/material';
 export class ChatFooterComponent implements OnInit {
   messageValue: String= "";
   name: string = null;
-
+  changeToListenMode: boolean = false;
+  private stream: MediaStream;
+  private recordRTC: any;
+  
   constructor(private chatSvc: ChatService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -24,7 +28,15 @@ export class ChatFooterComponent implements OnInit {
 
 
   onMic(){
-
+    var options = {
+      mimeType: 'video/webm', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+      audioBitsPerSecond: 128000,
+      videoBitsPerSecond: 128000,
+      bitsPerSecond: 128000 // if this line is provided, skip above two
+    };
+    this.stream = stream;
+    this.recordRTC = RecordRTC(stream, options);
+    this.recordRTC.startRecording();
   }
 
   onMessage(){

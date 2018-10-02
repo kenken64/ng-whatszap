@@ -1,4 +1,4 @@
-# NgChatapp
+# ng-whatszap
 
 ```
 npm install firebase @angular/fire --save

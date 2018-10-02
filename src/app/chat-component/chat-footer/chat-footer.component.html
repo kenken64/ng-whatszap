@@ -3,9 +3,10 @@
       <span class="left-align-grid"><button mat-icon-button (click)="onMic()"><mat-icon>perm_camera_mic</mat-icon></button></span>
       <span class="example2-fill-remaining-space"></span>
       <span class="example-fill-remaining-space">
-        <mat-form-field>
+        <mat-form-field *ngIf="!changeToListenMode">
           <input matInput [(ngModel)]="messageValue">
-      </mat-form-field></span>
+        </mat-form-field>
+      </span>
       <span class="end-align-grid"><button mat-icon-button (click)="onMessage()"><mat-icon>message</mat-icon></button></span>
     </mat-toolbar-row>
   </mat-toolbar>

@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ChatService } from './services/chat.service';
 @Component({
@@ -8,7 +8,6 @@ import { ChatService } from './services/chat.service';
 })
 export class AppComponent implements OnInit{
   title = 'ng-chatapp';
-  //@Output() nameEvent = new EventEmitter<string>();
   name:string;
   constructor(private chatSvc: ChatService){}
   

@@ -1,6 +1,12 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter} from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { WebCamComponent } from 'ack-angular-webcam';
+
+export interface WebcamDialogData {
+  name: string;
+}
 
 @Component({
   selector: 'app-chat-header',
@@ -8,26 +14,47 @@ import { AngularFireStorage } from '@angular/fire/storage';
   styleUrls: ['./chat-header.component.css']
 })
 
-
 export class ChatHeaderComponent implements OnInit {
   name: string = "";
-  
-  constructor(private chatSvc: ChatService,
-    private storage: AngularFireStorage) { }
+  imageBinary: any;
+  @Output() success = new EventEmitter()
+  @Output() catch = new EventEmitter()
+
+  constructor(public chatSvc: ChatService,
+    public storage: AngularFireStorage, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.chatSvc.getUserName().subscribe((result)=>{
       console.log("ChatHeaderComponent" + result);
       this.name = result;
     });
-  }
+  } 
 
   onCamera(){
-    //TODO webcam ....
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(WebcamDialog, {
+        height: '480px',
+        width: '640px',
+        data: {name: this.name}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        if(typeof(result) === 'undefined'){
+          this.chatSvc.getUserName().subscribe((result)=>{
+            this.name = result;
+            console.log("ChatHeaderComponent this.name" + this.name);
+          });
+        }else{
+          this.name = result;
+        }
+        console.log('The dialog was closed ' + this.name);
+      });
+    });
   }
 
   onChange(files, event) {
-    var id = Guid.newGuid();
+    let id = Guid.newGuid();
     console.log( files );
     console.log( event.target.files[0].name );
     console.log(event.target.files[0]);
@@ -57,3 +84,41 @@ class Guid {
   }
 }
 
+@Component({
+  selector: 'webcam-dialog',
+  templateUrl: 'webcam.dialog.html',
+  styleUrls: ['./chat-header.component.css']
+})
+export class WebcamDialog {
+  webcam:WebCamComponent//will be populated by <ack-webcam [(ref)]="webcam">
+  base64;
+  options = {
+    width    : 580,
+    height   : 400
+  }
+  constructor(
+    public dialogRef: MatDialogRef<WebcamDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: WebcamDialogData, public chatSvc: ChatService,) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  genBase64(){
+      this.webcam.getBase64()
+      .then( base=>{
+        this.base64=base;
+        let chatMessage = {
+          message_type: 3,
+          message: null,
+          message_date: new Date(),
+          from: this.data.name,
+          webcamUrl: this.base64,
+        }
+        this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
+          console.log(result);
+        });
+      })
+      .catch( e=>console.error(e) );
+  } 
+}

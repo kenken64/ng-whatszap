@@ -5,5 +5,5 @@ export interface ChatMessage {
     from: string;
     imageUrl: string;
     audioUrl: string;
-    videoUrl: string;
+    webcamUrl: string;
   }
