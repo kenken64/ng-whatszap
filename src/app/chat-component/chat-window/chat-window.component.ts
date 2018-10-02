@@ -26,12 +26,14 @@ export class ChatWindowComponent implements OnInit{
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
   @ViewChild('chatPS') chatPS?: PerfectScrollbarComponent;
   @Output() nameEvent = new EventEmitter<string>();
+
   constructor(public dialog: MatDialog, 
     private chatSvc: ChatService,
     private cd: ChangeDetectorRef) { }
 
   ngOnInit(){
     this.chatSvc.getAllChatMessages().subscribe((results)=>{
+      
       setTimeout(()=>{
         this.chats = results;
         this.cd.detectChanges();

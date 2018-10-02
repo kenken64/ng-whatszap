@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, NgZone } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { MatSnackBar } from '@angular/material';
 import { Guid } from '../../shared/util';
-import * as firebase from 'firebase';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 declare var MediaRecorder: any;
 declare var window: any;
 
@@ -21,8 +22,7 @@ export class ChatFooterComponent implements OnInit {
   
   constructor(private chatSvc: ChatService, 
     public snackBar: MatSnackBar,
-    private _ngZone: NgZone) { 
-      window.angularComponent = {saveToFireStorage: this.saveToFireStorage, zone: _ngZone};
+    public storage: AngularFireStorage) { 
   }
 
   ngOnInit() {
@@ -37,24 +37,11 @@ export class ChatFooterComponent implements OnInit {
     navigator.mediaDevices.getUserMedia({audio: true}).
       then((stream) => {
         this.mediaRecorder = new MediaRecorder(stream);
-        this.mediaRecorder.ondataavailable = audioIsHere;
-        this.mediaRecorder.onstop = recordStopLah;
+        this.mediaRecorder.ondataavailable = this.audioIsHere;
+        //this.mediaRecorder.onstop = this.recordStopLah;
         window.localStream = stream;
         this.mediaRecorder.start();
         this.isRecording = true;
-    });
-  }
-
-  saveToFireStorage(e){
-    console.log("save to fire storage !" + JSON.stringify(e));
-    let id = Guid.newGuid();
-    console.log(id);
-    const filePath = `${id}.webm`;
-    var storageRef = firebase.storage().ref();
-    var audioCaptureRef = storageRef.child(filePath);
-    audioCaptureRef.put(e.data).then(function(snapshot) {
-      console.log('Uploaded a blob or file!');
-      console.log(snapshot);
     });
   }
 
@@ -78,7 +65,8 @@ export class ChatFooterComponent implements OnInit {
           message_date: new Date(),
           from: this.name,
           imageUrl: null,
-    
+          webcamUrl: null,
+          audioUrl: null
         }
         this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
           console.log(result);
@@ -99,14 +87,14 @@ export class ChatFooterComponent implements OnInit {
     }
     
   }
-}
-
-function audioIsHere(e){
-  console.log(e);
-  window.angularComponent.saveToFireStorage(e);  
-}
-
-function recordStopLah(e){
-  console.log(e);
-  console.log("recordStopLah");
+  
+  audioIsHere = e =>{
+    console.log(e);
+    console.log("save to fire storage !" + JSON.stringify(e));
+    let id = Guid.newGuid();
+    console.log(id);
+    const filePath = `${id}.webm`;
+    console.log(this.storage);
+    const task = this.storage.upload(filePath, e.data);
+  }
 }
