@@ -37,8 +37,7 @@ export class ChatFooterComponent implements OnInit {
     navigator.mediaDevices.getUserMedia({audio: true}).
       then((stream) => {
         this.mediaRecorder = new MediaRecorder(stream);
-        this.mediaRecorder.ondataavailable = this.audioIsHere;
-        //this.mediaRecorder.onstop = this.recordStopLah;
+        this.mediaRecorder.ondataavailable = this.audioIsAvailable;
         window.localStream = stream;
         this.mediaRecorder.start();
         this.isRecording = true;
@@ -85,10 +84,9 @@ export class ChatFooterComponent implements OnInit {
         duration: 3500,
       });
     }
-    
   }
   
-  audioIsHere = e =>{
+  audioIsAvailable = e =>{
     console.log(e);
     console.log("save to fire storage !" + JSON.stringify(e));
     let id = Guid.newGuid();
