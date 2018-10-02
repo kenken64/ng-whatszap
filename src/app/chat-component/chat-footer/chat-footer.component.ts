@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, NgZone } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { MatSnackBar } from '@angular/material';
-import { RecordRTC }  from 'recordrtc';
+import { Guid } from '../../shared/util';
+import * as firebase from 'firebase';
+declare var MediaRecorder: any;
+declare var window: any;
 
 @Component({
   selector: 'app-chat-footer',
@@ -10,13 +13,17 @@ import { RecordRTC }  from 'recordrtc';
   encapsulation: ViewEncapsulation.None
 })
 export class ChatFooterComponent implements OnInit {
+  
   messageValue: String= "";
   name: string = null;
-  changeToListenMode: boolean = false;
-  private stream: MediaStream;
-  private recordRTC: any;
-  
-  constructor(private chatSvc: ChatService, public snackBar: MatSnackBar) { }
+  isRecording: boolean = false;
+  mediaRecorder: any;
+
+  constructor(private chatSvc: ChatService, 
+    public snackBar: MatSnackBar,
+    private _ngZone: NgZone) { 
+      window.angularComponent = {saveToFireStorage: this.saveToFireStorage, zone: _ngZone};
+  }
 
   ngOnInit() {
     this.chatSvc.getUserName().subscribe((result)=>{
@@ -26,17 +33,35 @@ export class ChatFooterComponent implements OnInit {
     });
   }
 
+  onStartRecord(){
+    navigator.mediaDevices.getUserMedia({audio: true}).
+      then((stream) => {
+        this.mediaRecorder = new MediaRecorder(stream);
+        this.mediaRecorder.ondataavailable = audioIsHere;
+        this.mediaRecorder.onstop = recordStopLah;
+        this.mediaRecorder.start();
+        this.isRecording = true;
+    });
+  }
 
-  onMic(){
-    var options = {
-      mimeType: 'video/webm', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
-      audioBitsPerSecond: 128000,
-      videoBitsPerSecond: 128000,
-      bitsPerSecond: 128000 // if this line is provided, skip above two
-    };
-    this.stream = stream;
-    this.recordRTC = RecordRTC(stream, options);
-    this.recordRTC.startRecording();
+  saveToFireStorage(e){
+    console.log("save to fire storage !" + JSON.stringify(e));
+    let id = Guid.newGuid();
+    console.log(id);
+    const filePath = `${id}.webm`;
+    var storageRef = firebase.storage().ref();
+    var audioCaptureRef = storageRef.child(filePath);
+    audioCaptureRef.put(e.data).then(function(snapshot) {
+      console.log('Uploaded a blob or file!');
+      console.log(snapshot);
+    });
+  }
+
+  onStopRecord(){
+    console.log("stopping !");
+    this.mediaRecorder.stop();
+    console.log(this.mediaRecorder.state);
+    this.isRecording = false;
   }
 
   onMessage(){
@@ -72,4 +97,14 @@ export class ChatFooterComponent implements OnInit {
     }
     
   }
+}
+
+function audioIsHere(e){
+  console.log(e);
+  window.angularComponent.saveToFireStorage(e);  
+}
+
+function recordStopLah(e){
+  console.log(e);
+  console.log("recordStopLah");
 }

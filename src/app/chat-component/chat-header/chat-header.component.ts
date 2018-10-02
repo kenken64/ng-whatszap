@@ -92,6 +92,8 @@ class Guid {
 export class WebcamDialog {
   webcam:WebCamComponent//will be populated by <ack-webcam [(ref)]="webcam">
   base64;
+  flashLight: boolean = false;
+
   options = {
     width    : 580,
     height   : 400
@@ -105,6 +107,7 @@ export class WebcamDialog {
   }
 
   genBase64(){
+      this.flashLight = true;
       this.webcam.getBase64()
       .then( base=>{
         this.base64=base;

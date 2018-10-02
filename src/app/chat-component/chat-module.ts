@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 
 import  { DialogOverviewExampleDialog } from './chat-window/chat-window.component';
 import  { WebcamDialog } from './chat-header/chat-header.component';
+import { AudioContextModule } from 'angular-audio-context';
 
 import { WebCamModule } from 'ack-angular-webcam';
 
@@ -123,7 +124,8 @@ const routes = []
     AngularFireStorageModule,
     AngularFireMessagingModule,
     PerfectScrollbarModule,
-    WebCamModule
+    WebCamModule,
+    AudioContextModule.forRoot('balanced')
   ],
   entryComponents: [DialogOverviewExampleDialog, WebcamDialog],
   declarations: [

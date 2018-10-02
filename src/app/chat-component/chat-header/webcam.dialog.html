@@ -1,4 +1,4 @@
-<div class="camera">
+<div class="camera" [ngClass]="{flash: flashLight}">
     <ack-webcam [(ref)]="webcam" [options]="options" ></ack-webcam>
     <button mat-fab class="btn">
         <mat-icon aria-label="Take a photo" (click)="genBase64()">camera_enhance</mat-icon>

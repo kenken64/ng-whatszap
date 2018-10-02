@@ -32,9 +32,11 @@ export class ChatWindowComponent implements OnInit{
 
   ngOnInit(){
     this.chatSvc.getAllChatMessages().subscribe((results)=>{
-      this.chats = results;
-      this.cd.detectChanges();
-      this.chatPS.directiveRef.scrollToBottom(0, 300);
+      setTimeout(()=>{
+        this.chats = results;
+        this.cd.detectChanges();
+        this.chatPS.directiveRef.scrollToBottom(0, 300);
+      }, 2500);
     })
   }
 
@@ -55,9 +57,7 @@ export class ChatWindowComponent implements OnInit{
     });
   }
 
-  onScrollEvent(event){
-
-  }
+  onScrollEvent(event){}
 }
 
 

@@ -15,8 +15,12 @@
     width: 60px;
     line-height: 40px;
     background: #018A80;
-    bottom: 190px;
-    right: 720px;
+    bottom: 130px;
+    right: 620px;
     color: #fff;
     text-align: center;
   }
+
+.flash{ 
+    background-color: red;
+ }
