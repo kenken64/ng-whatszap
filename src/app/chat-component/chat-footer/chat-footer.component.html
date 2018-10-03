@@ -7,11 +7,15 @@
           <button mat-icon-button (click)="onStopRecord()"><mat-icon>stop</mat-icon></button>
         </span>
       <span class="example2-fill-remaining-space"></span>
-      <span class="example-fill-remaining-space">
+      <span class="example-fill-remaining-space" *ngIf="isRecording==false">
         <mat-form-field>
           <input matInput [(ngModel)]="messageValue">
         </mat-form-field>
       </span>
-      <span class="end-align-grid"><button mat-icon-button (click)="onMessage()"><mat-icon>message</mat-icon></button></span>
+      <span class="example-fill-remaining-space" *ngIf="isRecording==true">
+        <mat-progress-bar mode="buffer">{{isRecording}}</mat-progress-bar>
+      </span>
+      
+      <span class="end-align-grid" *ngIf="isRecording==false"><button mat-icon-button (click)="onMessage()"><mat-icon>message</mat-icon></button></span>
     </mat-toolbar-row>
 </mat-toolbar>

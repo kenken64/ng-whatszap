@@ -8,6 +8,7 @@
                           <div *ngIf="chat.message_type==1">{{chat.message}}</div>
                           <div *ngIf="chat.message_type==2"><img width="400" height="400" src="{{chat.imageUrl}}"></div>
                           <div *ngIf="chat.message_type==3"><img width="400" height="400" src="{{chat.webcamUrl}}"></div>
+                          <div *ngIf="chat.message_type==4"><audio src="{{chat.audioUrl}}" controls> </audio></div>
                           <br><strong>{{chat.message_date.toDate()| date:'short'}}</strong>
                       </div>
                   </div>

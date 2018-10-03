@@ -82,6 +82,18 @@ export class ChatFooterComponent implements OnInit {
     let id = Guid.newGuid();
     const filePath = `${id}.webm`;
     console.log(filePath);
-    const task = this.storage.upload(filePath, e.data);
+    let chatMessage = {
+      message_type: 4,
+      message: null,
+      message_date: new Date(),
+      from: this.name,
+      audioUrl: `https://firebasestorage.googleapis.com/v0/b/chat-app-acea7.appspot.com/o/${filePath}?alt=media&token=0bb313a8-2b7b-4b59-af44-5e1044376e0e`,
+    }
+    this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
+      console.log(result);
+      const task = this.storage.upload(filePath, e.data);
+    });
+    
+
   }
 }
