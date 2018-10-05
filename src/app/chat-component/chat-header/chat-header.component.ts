@@ -3,6 +3,7 @@ import { ChatService } from '../../services/chat.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { WebCamComponent } from 'ack-angular-webcam';
+import { Router } from '@angular/router';
 
 export interface WebcamDialogData {
   name: string;
@@ -21,7 +22,9 @@ export class ChatHeaderComponent implements OnInit {
   @Output() catch = new EventEmitter()
 
   constructor(public chatSvc: ChatService,
-    public storage: AngularFireStorage, public dialog: MatDialog) { }
+    public storage: AngularFireStorage, 
+    public dialog: MatDialog,
+    private route : Router) { }
 
   ngOnInit() {
     this.chatSvc.getUserName().subscribe((result)=>{
@@ -29,6 +32,10 @@ export class ChatHeaderComponent implements OnInit {
       this.name = result;
     });
   } 
+
+  onVideoCall(){
+    this.route.navigate(['/video-call'])
+  }
 
   onCamera(){
     setTimeout(() => {

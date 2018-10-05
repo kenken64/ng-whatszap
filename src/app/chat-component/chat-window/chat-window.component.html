@@ -1,4 +1,6 @@
-<div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+<list-content-loader *ngIf="isContentLoader && name == null"></list-content-loader>
+
+<div *ngIf="!isContentLoader && name != null" class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
     <perfect-scrollbar #chatPS class="scroll-container" fxFlex="auto" [config]="config" [scrollIndicators]="true" (psXReachEnd)="onScrollEvent($event)" (psYReachEnd)="onScrollEvent($event)" (psXReachStart)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
       <div class="scrollable-content">
           <div *ngFor="let chat of chats" fxLayout="column" fxLayout.xs="row" fxLayoutWrap="wrap" fxLayoutAlign="start left" fxLayoutGap="10px">
@@ -16,4 +18,3 @@
       </div>
     </perfect-scrollbar>
 </div>
-

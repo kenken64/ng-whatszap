@@ -7,5 +7,7 @@ export const environment = {
     projectId: "chat-app-acea7",
     storageBucket: "chat-app-acea7.appspot.com",
     messagingSenderId: "189475517778"
-  }
+  },
+  iceservers: 'http://localhost:3000/getICETokens',
+  wsserver: 'http://localhost:3000'
 };

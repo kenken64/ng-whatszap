@@ -4,9 +4,10 @@
     <span>WhatsZAp &nbsp;</span><div *ngIf="(name | json) != '{}'">- {{name}}</div>
     <span class="example-fill-remaining-space"></span>
     <span>
-      <button mat-icon-button onClick="document.getElementById('fileToUpload').click()"><mat-icon>collections</mat-icon></button>
+      <button mat-icon-button [disabled]="name == null" onClick="document.getElementById('fileToUpload').click()"><mat-icon>collections</mat-icon></button>
       <input style="display:none" id="fileToUpload" #myInput (change)="onChange(myInput.value, $event);" [(ngModel)]="imageBinary" type="file" />
     </span>
-    <span><button mat-icon-button (click)="onCamera()"><mat-icon>camera_alt</mat-icon></button></span>
+    <span><button mat-icon-button [disabled]="name == null" (click)="onVideoCall()"><mat-icon>videocam</mat-icon></button></span>
+    <span><button mat-icon-button [disabled]="name == null" (click)="onCamera()"><mat-icon>camera_alt</mat-icon></button></span>
   </mat-toolbar-row>
 </mat-toolbar>

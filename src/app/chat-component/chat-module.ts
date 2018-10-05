@@ -19,7 +19,6 @@ import { FormsModule } from '@angular/forms';
 
 import  { DialogOverviewExampleDialog } from './chat-window/chat-window.component';
 import  { WebcamDialog } from './chat-header/chat-header.component';
-import { AudioContextModule } from 'angular-audio-context';
 
 import { WebCamModule } from 'ack-angular-webcam';
 
@@ -29,6 +28,9 @@ import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     wheelPropagation: true
     };
+
+import { ContentLoaderModule } from '@netbasal/content-loader';
+
 
 import {
   MatAutocompleteModule,
@@ -70,8 +72,28 @@ import {
 
 import {PlatformModule} from '@angular/cdk/platform';
 import {ObserversModule} from '@angular/cdk/observers';
+import { VideocallComponent } from './videocall/videocall.component';
+import { ChatappComponent } from './chatapp/chatapp.component';
 
-const routes = []
+const routes = [
+  {
+    path: 'Home',
+    component: ChatappComponent,
+  },
+  {
+    path: 'video-call',
+    component: VideocallComponent,
+  },
+  {
+    path: '', 
+    redirectTo: '/Home', 
+    pathMatch: 'full' 
+},
+{
+    path: '**', 
+    component: ChatappComponent,
+}
+]
 
 /**
  * NgModule that includes all Material modules that are required to serve the demo-app.
@@ -125,7 +147,7 @@ const routes = []
     AngularFireMessagingModule,
     PerfectScrollbarModule,
     WebCamModule,
-    AudioContextModule.forRoot('balanced')
+    ContentLoaderModule
   ],
   entryComponents: [DialogOverviewExampleDialog, WebcamDialog],
   declarations: [

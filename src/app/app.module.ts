@@ -13,10 +13,14 @@ import {
   MatInputModule,
   MatDialogModule
 } from '@angular/material';
+import { VideocallComponent } from './chat-component/videocall/videocall.component';
+import { ChatappComponent } from './chat-component/chatapp/chatapp.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    VideocallComponent,
+    ChatappComponent,
   ],
   imports: [
     BrowserModule,

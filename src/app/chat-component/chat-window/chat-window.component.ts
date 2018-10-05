@@ -19,6 +19,7 @@ export interface DialogData {
 export class ChatWindowComponent implements OnInit{
   name: string;
   chats: ChatMessage[] = [];
+  isContentLoader: boolean = true;
   public disabled: boolean = false;
   public type: string = 'component';
   public config: PerfectScrollbarConfigInterface = {};
@@ -33,7 +34,6 @@ export class ChatWindowComponent implements OnInit{
 
   ngOnInit(){
     this.chatSvc.getAllChatMessages().subscribe((results)=>{
-      
       setTimeout(()=>{
         this.chats = results;
         this.cd.detectChanges();
@@ -53,7 +53,8 @@ export class ChatWindowComponent implements OnInit{
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         this.name = result;
-        this.nameEvent.emit(this.name)
+        this.nameEvent.emit(this.name);
+        this.isContentLoader = false;
         console.log('The dialog was closed ' + this.name);
       });
     });

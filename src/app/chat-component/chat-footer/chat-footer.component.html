@@ -1,7 +1,7 @@
 <mat-toolbar>
     <mat-toolbar-row>
       <span class="left-align-grid" *ngIf="isRecording == false">
-        <button mat-icon-button (click)="onStartRecord()"><mat-icon>perm_camera_mic</mat-icon></button>
+        <button mat-icon-button [disabled]="name == null" (click)="onStartRecord()"><mat-icon>perm_camera_mic</mat-icon></button>
       </span>
       <span class="left-align-grid" *ngIf="isRecording == true">
           <button mat-icon-button (click)="onStopRecord()"><mat-icon>stop</mat-icon></button>
@@ -16,6 +16,6 @@
         <mat-progress-bar mode="buffer">{{isRecording}}</mat-progress-bar>
       </span>
       
-      <span class="end-align-grid" *ngIf="isRecording==false"><button mat-icon-button (click)="onMessage()"><mat-icon>message</mat-icon></button></span>
+      <span class="end-align-grid" *ngIf="isRecording==false"><button mat-icon-button [disabled]="name == null" (click)="onMessage()"><mat-icon>message</mat-icon></button></span>
     </mat-toolbar-row>
 </mat-toolbar>

@@ -93,7 +93,5 @@ export class ChatFooterComponent implements OnInit {
       console.log(result);
       const task = this.storage.upload(filePath, e.data);
     });
-    
-
   }
 }
