@@ -146,8 +146,12 @@ const routes = [
     AngularFireStorageModule,
     AngularFireMessagingModule,
     PerfectScrollbarModule,
+<<<<<<< HEAD
     WebCamModule,
     ContentLoaderModule
+=======
+    WebCamModule
+>>>>>>> 257a9c87fab7a78af3656e5624b0dda3657aa628
   ],
   entryComponents: [DialogOverviewExampleDialog, WebcamDialog],
   declarations: [

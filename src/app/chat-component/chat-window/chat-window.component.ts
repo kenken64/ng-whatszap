@@ -45,8 +45,8 @@ export class ChatWindowComponent implements OnInit{
   ngAfterViewInit() {
     setTimeout(() => {
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-        height: '400px',
-        width: '600px',
+        panelClass: 'my-centered-dialog',
+        width: '512px',
         data: {name: this.name}
       });
 
