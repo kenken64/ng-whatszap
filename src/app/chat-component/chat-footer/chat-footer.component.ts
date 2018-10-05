@@ -3,6 +3,7 @@ import { ChatService } from '../../services/chat.service';
 import { MatSnackBar } from '@angular/material';
 import { Guid } from '../../shared/util';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { environment } from '../../../environments/environment';
 
 declare var MediaRecorder: any;
 declare var window: any;
@@ -87,7 +88,7 @@ export class ChatFooterComponent implements OnInit {
       message: null,
       message_date: new Date(),
       from: this.name,
-      audioUrl: `https://firebasestorage.googleapis.com/v0/b/chat-app-acea7.appspot.com/o/${filePath}?alt=media&token=0bb313a8-2b7b-4b59-af44-5e1044376e0e`,
+      audioUrl: environment.firebase_cms_url + filePath  + environment.firebase_cms_url_postfix,
     }
     this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
       console.log(result);

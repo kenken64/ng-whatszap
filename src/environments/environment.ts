@@ -13,7 +13,9 @@ export const environment = {
     messagingSenderId: "189475517778"
   },
   iceservers: 'http://localhost:3000/getICETokens',
-  wsserver: 'http://localhost:3000'
+  wsserver: 'http://localhost:3000',
+  firebase_cms_url: `https://firebasestorage.googleapis.com/v0/b/chat-app-acea7.appspot.com/o/`,
+  firebase_cms_url_postfix: '?alt=media&token=0bb313a8-2b7b-4b59-af44-5e1044376e0e'
 };
 
 /*

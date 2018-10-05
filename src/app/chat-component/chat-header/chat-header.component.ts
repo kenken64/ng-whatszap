@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { WebCamComponent } from 'ack-angular-webcam';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 export interface WebcamDialogData {
   name: string;
@@ -74,7 +75,7 @@ export class ChatHeaderComponent implements OnInit {
       message: null,
       message_date: new Date(),
       from: this.name,
-      imageUrl: `https://firebasestorage.googleapis.com/v0/b/chat-app-acea7.appspot.com/o/${filePath}?alt=media&token=0bb313a8-2b7b-4b59-af44-5e1044376e0e`,
+      imageUrl: environment.firebase_cms_url + filePath  + environment.firebase_cms_url_postfix,
     }
     this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
       console.log(result);
