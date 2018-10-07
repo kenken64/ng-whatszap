@@ -45,8 +45,6 @@ export class VideocallComponent implements OnInit  {
   endCall(){
     this.localStream.getAudioTracks()[0].stop();
     this.localStream.getVideoTracks()[0].stop();
-    this.remoteStream.getAudioTracks()[0].stop();
-    this.remoteStream.getVideoTracks()[0].stop();
     this.route.navigate(['/Home']);
   }
 
