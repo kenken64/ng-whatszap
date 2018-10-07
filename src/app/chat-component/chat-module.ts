@@ -29,9 +29,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     wheelPropagation: true
     };
 
-import { ContentLoaderModule } from '@netbasal/content-loader';
-
-
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -146,8 +143,7 @@ const routes = [
     AngularFireStorageModule,
     AngularFireMessagingModule,
     PerfectScrollbarModule,
-    WebCamModule,
-    ContentLoaderModule
+    WebCamModule
   ],
   entryComponents: [DialogOverviewExampleDialog, WebcamDialog],
   declarations: [

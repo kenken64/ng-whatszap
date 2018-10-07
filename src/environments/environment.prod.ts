@@ -8,6 +8,6 @@ export const environment = {
     storageBucket: "chat-app-acea7.appspot.com",
     messagingSenderId: "189475517778"
   },
-  iceservers: 'http://localhost:3000/getICETokens',
-  wsserver: 'http://localhost:3000'
+  iceservers: 'https://mighty-bastion-61444.herokuapp.com/getICETokens',
+  wsserver: 'https://mighty-bastion-61444.herokuapp.com/'
 };
