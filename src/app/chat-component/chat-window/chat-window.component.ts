@@ -43,21 +43,31 @@ export class ChatWindowComponent implements OnInit{
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-        panelClass: 'my-centered-dialog',
-        width: '512px',
-        data: {name: this.name}
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.name = result;
-        this.nameEvent.emit(this.name);
-        this.isContentLoader = false;
-        console.log('The dialog was closed ' + this.name);
-      });
+    
+    this.chatSvc.getUserName().subscribe((result)=>{
+      console.log("ngAfterViewInit" + JSON.stringify(result));
+      let jsonName = JSON.stringify(result)
+      if((typeof(result) === 'undefined') || (jsonName == '{}')){
+        console.log("NAME > " + JSON.stringify(result));
+        setTimeout(() => {
+          const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+            panelClass: 'my-centered-dialog',
+            width: '512px',
+            data: {name: this.name}
+          });
+    
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            this.name = result;
+            this.nameEvent.emit(this.name);
+            this.isContentLoader = false;
+            console.log('The dialog was closed ' + this.name);
+          });
+        });
+      }
     });
+
+    
   }
 
   onScrollEvent(event){}

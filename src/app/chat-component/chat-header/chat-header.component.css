@@ -4,11 +4,6 @@
     flex: 1 1 auto;
 }
 
-.my-full-screen-dialog .mat-dialog-container {
-    max-width: none;
-    margin: auto;
-}
-
 .camera .btn {
     position: absolute;
     border-radius: 70%;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 declare var window :any;
 
 @Component({
@@ -20,8 +22,8 @@ export class VideocallComponent implements OnInit  {
   
   room = 'fsf2018';
   socket;
-  constructor(private http: HttpClient) {
-    this.socket = io.connect('http://localhost:3000');
+  constructor(private http: HttpClient, private route : Router) {
+    this.socket = io.connect(environment.wsserver);
   }
 
   // viewchild doesnt work for video tag !!!
@@ -34,10 +36,18 @@ export class VideocallComponent implements OnInit  {
   ngOnInit () {
     
     let self = this;
-    this.http.get('http://localhost:3000/getICETokens').subscribe(x=>{
+    this.http.get(environment.iceservers).subscribe(x=>{
       self.tokens = x;
       self.setConnection();
     });
+  }
+
+  endCall(){
+    this.localStream.getAudioTracks()[0].stop();
+    this.localStream.getVideoTracks()[0].stop();
+    this.remoteStream.getAudioTracks()[0].stop();
+    this.remoteStream.getVideoTracks()[0].stop();
+    this.route.navigate(['/Home']);
   }
 
   setConnection(){
@@ -49,10 +59,10 @@ export class VideocallComponent implements OnInit  {
       audio: true,
       video: true
     })
-      .then(self.gotStream.bind(self))
-      .catch(function (e) {
-        console.log(e);
-      });
+    .then(self.gotStream.bind(self))
+    .catch(function (e) {
+      console.log(e);
+    });
 
 
     window.onbeforeunload = function () {

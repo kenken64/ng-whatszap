@@ -151,7 +151,8 @@ const routes = [
     WebcamDialog,
     ChatWindowComponent,
     ChatFooterComponent,
-    ChatHeaderComponent
+    ChatHeaderComponent,
+    VideocallComponent
   ],
   providers: [
     ChatService,

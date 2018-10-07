@@ -2,11 +2,3 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
-
-.my-centered-dialog {
-    max-width: 80vw;
-  
-    .mat-dialog-container {
-      max-width: none;
-    }
-  }
