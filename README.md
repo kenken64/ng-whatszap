@@ -1,5 +1,8 @@
 # ng-whatszap
 
+<img src="./demo.gif">
+
+Visit my [Demo](https://kennethphang.asia)
 ```
 npm install firebase @angular/fire --save
 ng add @angular/material
@@ -35,7 +38,6 @@ Inject the modules into the imports array on the NGModule annotation.
   bootstrap: [AppComponent]
 })
 ```
-
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
