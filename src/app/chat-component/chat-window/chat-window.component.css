@@ -7,23 +7,22 @@
 }
 
 .talk-bubble {
-    margin: 40px;
+    margin: 20px;
     display: inline-block;
     position: relative;
-    width: 500px;
+    width: 400px;
     height: auto;
     background-color: lightyellow;
 }
 
 .border{
-border: 8px solid #666;
+    border: 8px solid #666;
 }
 
 .round{
-border-radius: 30px;
+    border-radius: 30px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
-
 }
 
 .tri-right.border.left-top:before {
@@ -43,9 +42,9 @@ border-radius: 30px;
     position: absolute;
     width: 0;
     height: 0;
-left: -20px;
+    left: -20px;
     right: auto;
-top: 0px;
+    top: 0px;
     bottom: auto;
     border: 22px solid;
     border-color: lightyellow transparent transparent transparent;
@@ -57,9 +56,9 @@ top: 0px;
     position: absolute;
     width: 0;
     height: 0;
-left: -40px;
+    left: -40px;
     right: auto;
-top: 30px;
+    top: 30px;
     bottom: auto;
     border: 20px solid;
     border-color: #666 #666 transparent transparent;
@@ -69,9 +68,9 @@ top: 30px;
     position: absolute;
     width: 0;
     height: 0;
-left: -20px;
+    left: -20px;
     right: auto;
-top: 38px;
+    top: 38px;
     bottom: auto;
     border: 12px solid;
     border-color: lightyellow lightyellow transparent transparent;
@@ -84,8 +83,8 @@ top: 38px;
     width: 0;
     height: 0;
     left: -8px;
-right: auto;
-top: auto;
+    right: auto;
+    top: auto;
     bottom: -40px;
     border: 32px solid;
     border-color: transparent transparent transparent #666;
@@ -96,8 +95,8 @@ top: auto;
     width: 0;
     height: 0;
     left: 0px;
-right: auto;
-top: auto;
+    right: auto;
+    top: auto;
     bottom: -20px;
     border: 22px solid;
     border-color: transparent transparent transparent lightyellow;
@@ -109,8 +108,8 @@ top: auto;
     width: 0;
     height: 0;
     left: 30px;
-right: auto;
-top: auto;
+    right: auto;
+    top: auto;
     bottom: -40px;
     border: 20px solid;
     border-color: #666 transparent transparent #666;
@@ -121,8 +120,8 @@ top: auto;
     width: 0;
     height: 0;
     left: 38px;
-right: auto;
-top: auto;
+    right: auto;
+    top: auto;
     bottom: -20px;
     border: 12px solid;
     border-color: lightyellow transparent transparent lightyellow;
@@ -133,7 +132,7 @@ top: auto;
     position: absolute;
     width: 0;
     height: 0;
-left: auto;
+    left: auto;
     right: 30px;
     bottom: -40px;
     border: 20px solid;
@@ -144,7 +143,7 @@ left: auto;
     position: absolute;
     width: 0;
     height: 0;
-left: auto;
+    left: auto;
     right: 38px;
     bottom: -20px;
     border: 12px solid;
@@ -156,7 +155,7 @@ left: auto;
     position: absolute;
     width: 0;
     height: 0;
-left: auto;
+    left: auto;
     right: -8px;
     bottom: -40px;
     border: 20px solid;
@@ -167,7 +166,7 @@ left: auto;
     position: absolute;
     width: 0;
     height: 0;
-left: auto;
+    left: auto;
     right: 0px;
     bottom: -20px;
     border: 12px solid;
@@ -180,9 +179,9 @@ left: auto;
     position: absolute;
     width: 0;
     height: 0;
-left: auto;
+    left: auto;
     right: -40px;
-top: 30px;
+    top: 30px;
     bottom: auto;
     border: 20px solid;
     border-color: #666 transparent transparent #666;
@@ -218,9 +217,9 @@ top: 30px;
     position: absolute;
     width: 0;
     height: 0;
-left: auto;
+    left: auto;
     right: -20px;
-top: 0px;
+    top: 0px;
     bottom: auto;
     border: 20px solid;
     border-color: lightyellow transparent transparent transparent;
@@ -228,14 +227,14 @@ top: 0px;
 
 /* talk bubble contents */
 .talktext{
-padding: 1em;
+    padding: 1em;
     text-align: left;
-line-height: 1.5em;
+    line-height: 1.5em;
 }
 .talktext p{
-/* remove webkit p margins */
--webkit-margin-before: 0em;
--webkit-margin-after: 0em;
+    * remove webkit p margins */
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
 }
 
 
@@ -244,7 +243,7 @@ line-height: 1.5em;
   position: relative;
 
   overflow: auto;
-  height: 750px;
+  height: 650px;
   min-height: 0;
   margin: 8px 16px;
   border-radius: 4px;

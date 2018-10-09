@@ -51,10 +51,10 @@ export class ChatWindowComponent implements OnInit{
         console.log("NAME > " + JSON.stringify(result));
         setTimeout(() => {
           const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-            panelClass: 'my-centered-dialog',
             width: '512px',
             data: {name: this.name}
           });
+          dialogRef.updatePosition({ top: '50px', left: '20px' });
     
           dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');

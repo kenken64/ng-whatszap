@@ -1,8 +1,8 @@
 <div class="content-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="stretch" fxFlex="auto">
-    <perfect-scrollbar #chatPS class="scroll-container" fxFlex="1 6 100%" [config]="config" [scrollIndicators]="true" (psXReachEnd)="onScrollEvent($event)" (psYReachEnd)="onScrollEvent($event)" (psXReachStart)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
+    <perfect-scrollbar #chatPS class="scroll-container" fxFlex="auto" [config]="config" [scrollIndicators]="true" (psXReachEnd)="onScrollEvent($event)" (psYReachEnd)="onScrollEvent($event)" (psXReachStart)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
       <div class="scrollable-content">
-          <div *ngFor="let chat of chats" fxLayout="column" fxLayout.xs="row" fxLayoutWrap="wrap" fxLayoutAlign="start left" fxLayoutGap="10px">
-                  <div fxFlex="100%"  class="talk-bubble tri-right round btm-left">
+          <div *ngFor="let chat of chats" >
+                  <div class="talk-bubble tri-right round btm-left">
                       <div class="talktext">
                           <mat-chip-list><mat-chip>{{chat.from}}</mat-chip></mat-chip-list><br>
                           <div *ngIf="chat.message_type==1">{{chat.message}}</div>
@@ -16,3 +16,5 @@
       </div>
     </perfect-scrollbar>
 </div>
+
+<!--fxLayout="column" fxLayout.xs="row" fxLayoutWrap="wrap" fxLayoutAlign="start left" fxLayoutGap="10px"-->
