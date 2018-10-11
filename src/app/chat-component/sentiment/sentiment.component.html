@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="from">
+    <th mat-header-cell *matHeaderCellDef> From </th>
+    <td mat-cell *matCellDef="let element"> {{element.from}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="text">
+    <th mat-header-cell *matHeaderCellDef> Message </th>
+    <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="label">
+    <th mat-header-cell *matHeaderCellDef> Sentiment Analysis </th>
+    <td mat-cell *matCellDef="let element"> {{element.label}} 
+      <mat-icon *ngIf="element.label=='positive'">sentiment_very_satisfied</mat-icon>
+      <mat-icon *ngIf="element.label=='negative'">sentiment_very_dissatisfied</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
+import { SentimentService } from '../../services/sentiment.service';
+
 import { MatSnackBar } from '@angular/material';
 import { Guid } from '../../shared/util';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -23,7 +25,8 @@ export class ChatFooterComponent implements OnInit {
   
   constructor(private chatSvc: ChatService, 
     public snackBar: MatSnackBar,
-    public storage: AngularFireStorage) { 
+    public storage: AngularFireStorage,
+    public sentimentSvc: SentimentService) { 
   }
 
   ngOnInit() {
@@ -63,6 +66,9 @@ export class ChatFooterComponent implements OnInit {
           audioUrl: null
         }
         this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
+          this.sentimentSvc.addMessage(chatMessage).subscribe((result)=>{
+            console.log(result);
+          })
           this.messageValue = "";
         });
       }else{

@@ -29,6 +29,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     wheelPropagation: true
     };
 
+import { SentimentComponent } from './sentiment/sentiment.component';
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -80,6 +82,10 @@ const routes = [
   {
     path: 'video-call',
     component: VideocallComponent,
+  },
+  {
+    path: 'sentiment',
+    component: SentimentComponent,
   },
   {
     path: '', 
@@ -152,7 +158,8 @@ const routes = [
     ChatWindowComponent,
     ChatFooterComponent,
     ChatHeaderComponent,
-    VideocallComponent
+    VideocallComponent,
+    SentimentComponent
   ],
   providers: [
     ChatService,

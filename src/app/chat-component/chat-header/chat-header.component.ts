@@ -35,7 +35,11 @@ export class ChatHeaderComponent implements OnInit {
   } 
 
   onVideoCall(){
-    this.route.navigate(['/video-call'])
+    this.route.navigate(['/video-call']);
+  }
+
+  onSentiment(){
+    this.route.navigate(['/sentiment']);
   }
 
   onCamera(){
