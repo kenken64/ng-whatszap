@@ -5,16 +5,16 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBhsJKujKhAkUPLoW5FeE2yMrstT8vTM30",
-    authDomain: "chat-app-acea7.firebaseapp.com",
-    databaseURL: "https://chat-app-acea7.firebaseio.com",
-    projectId: "chat-app-acea7",
-    storageBucket: "chat-app-acea7.appspot.com",
-    messagingSenderId: "189475517778"
+    apiKey: "AIzaSyCRZiNn3K0_puYtiEHEVgcXKPUyVYKLoMs",
+    authDomain: "ng-whatszap.firebaseapp.com",
+    databaseURL: "https://ng-whatszap.firebaseio.com",
+    projectId: "ng-whatszap",
+    storageBucket: "ng-whatszap.appspot.com",
+    messagingSenderId: "327185413911"
   },
   iceservers: 'http://localhost:3000/getICETokens',
   wsserver: 'http://localhost:3000',
-  firebase_cms_url: `https://firebasestorage.googleapis.com/v0/b/chat-app-acea7.appspot.com/o/`,
+  firebase_cms_url: `https://firebasestorage.googleapis.com/v0/b/ng-whatszap.appspot.com/o/`,
   firebase_cms_url_postfix: '?alt=media&token=0bb313a8-2b7b-4b59-af44-5e1044376e0e',
   sentiment_api: 'http://localhost:3002'
 };
