@@ -1,0 +1,19 @@
+{
+  "name": "tfjs-sentiment-analysis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "firebase-admin": "^6.0.0",
+    "sentiment": "^5.0.1",
+    "uuid": "^3.3.2"
+  }
+}

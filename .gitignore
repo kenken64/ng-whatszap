@@ -39,3 +39,9 @@ testem.log
 Thumbs.db
 
 package-lock.json
+
+ice-server/node_modules
+ice-server/package-lock.json
+
+sentiment-analysis-server/node_modules
+sentiment-analysis-server/package-lock.json
