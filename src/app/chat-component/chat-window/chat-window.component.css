@@ -232,7 +232,6 @@
     line-height: 1.5em;
 }
 .talktext p{
-    * remove webkit p margins */
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
