@@ -15,8 +15,8 @@ const server = app
 
 const io = socketIO(server);
 
-const accountSid = 'ACbf9e16d08c742aa969d7a4719280f9cf';
-const authToken = 'abb5003f2b71b27a6b229710ebce285a';
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 
 const client = require('twilio')(accountSid, authToken);
 

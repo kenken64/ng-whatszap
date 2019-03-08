@@ -8,9 +8,10 @@ var sentiment = new Sentiment();
 var serviceAccount = require('./credentials.json');
 const NODE_PORT = process.env.PORT;
 
+//"https://everythingaboutai-3f390.firebaseio.com"
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://everythingaboutai-3f390.firebaseio.com"
+  databaseURL: process.env.FIREBASE_DB_URL
 });
 
 const db = admin.firestore();
