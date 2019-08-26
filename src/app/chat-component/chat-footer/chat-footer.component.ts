@@ -83,7 +83,7 @@ export class ChatFooterComponent implements OnInit {
       });
     }
   }
-  
+
   // function as expression this works!
   audioIsAvailable = e =>{
     let id = Guid.newGuid();

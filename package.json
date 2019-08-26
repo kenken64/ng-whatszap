@@ -42,7 +42,7 @@
     "@types/jasmine": "~3.3.9",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~11.9.4",
-    "ack-angular-webcam": "^1.9.3",
+    "ack-angular-webcam": "^1.10.0",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",

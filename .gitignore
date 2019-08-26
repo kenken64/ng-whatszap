@@ -45,3 +45,7 @@ ice-server/package-lock.json
 
 sentiment-analysis-server/node_modules
 sentiment-analysis-server/package-lock.json
+.gitsecret/keys/random_seed
+!*.secret
+src/environments/environment.ts
+src/environments/environment.prod.ts
