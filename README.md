@@ -1,6 +1,8 @@
 # ng-whatszap
 
-<img src="./demo.gif">
+```
+to be youtube guide
+```
 
 Visit my [Demo](https://kennethphang.asia)
 ```
