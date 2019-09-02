@@ -12,7 +12,7 @@
     position: relative;
     width: 400px;
     height: auto;
-    background-color: lightyellow;
+    background-color:#e4c8f7;
 }
 
 .border{
@@ -47,7 +47,7 @@
     top: 0px;
     bottom: auto;
     border: 22px solid;
-    border-color: lightyellow transparent transparent transparent;
+    border-color: #e4c8f7 transparent transparent transparent;
 }
 
 /* Right triangle, left side slightly down */
@@ -73,7 +73,7 @@
     top: 38px;
     bottom: auto;
     border: 12px solid;
-    border-color: lightyellow lightyellow transparent transparent;
+    border-color: #e4c8f7 #e4c8f7 transparent transparent;
 }
 
 /*Right triangle, placed bottom left side slightly in*/
@@ -99,7 +99,7 @@
     top: auto;
     bottom: -20px;
     border: 22px solid;
-    border-color: transparent transparent transparent lightyellow;
+    border-color: transparent transparent transparent #e4c8f7;
 }
 
 .tri-right.border.btm-left-in:before {
@@ -124,7 +124,7 @@
     top: auto;
     bottom: -20px;
     border: 12px solid;
-    border-color: lightyellow transparent transparent lightyellow;
+    border-color: #e4c8f7 transparent transparent #e4c8f7;
 }
 
 .tri-right.border.btm-right-in:before {
@@ -147,7 +147,7 @@
     right: 38px;
     bottom: -20px;
     border: 12px solid;
-    border-color: lightyellow lightyellow transparent transparent;
+    border-color: #e4c8f7 #e4c8f7 transparent transparent;
 }
 
 .tri-right.border.btm-right:before {
@@ -170,7 +170,7 @@
     right: 0px;
     bottom: -20px;
     border: 12px solid;
-    border-color: lightyellow lightyellow transparent transparent;
+    border-color: #e4c8f7 #e4c8f7 transparent transparent;
 }
 
 /* Right triangle, right side slightly down*/
@@ -196,7 +196,7 @@
     top: 38px;
     bottom: auto;
     border: 12px solid;
-    border-color: lightyellow transparent transparent lightyellow;
+    border-color: #e4c8f7 transparent transparent #e4c8f7;
 }
 
 /* Right triangle placed top right flush. */
@@ -222,7 +222,7 @@
     top: 0px;
     bottom: auto;
     border: 20px solid;
-    border-color: lightyellow transparent transparent transparent;
+    border-color: #e4c8f7 transparent transparent transparent;
 }
 
 /* talk bubble contents */
@@ -262,6 +262,17 @@
   margin: 12px 16px;
   border: 1px solid #ccc;
 }
+
+.message-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+
+
 
 .vertical-container,
 .horizontal-container {

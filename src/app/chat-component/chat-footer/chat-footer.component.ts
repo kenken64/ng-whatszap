@@ -52,7 +52,15 @@ export class ChatFooterComponent implements OnInit {
     this.isRecording = false;
   }
 
+  onKeyUpEnter(messageVal: string){
+    console.log("on key up eneter !");
+    console.log("messageVal  > " + messageVal);
+    this.messageValue = messageVal;
+    this.onMessage();
+  }
+
   onMessage(){
+    console.log("on Message!");
     if(typeof(this.name) !== 'undefined'){
       
       if(this.messageValue !== ''){
