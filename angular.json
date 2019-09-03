@@ -21,7 +21,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.json"
+              "src/manifest.json",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -46,7 +47,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": true
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             }
           }
         },
@@ -82,7 +84,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.json"
+              "src/manifest.json",
+              "src/manifest.webmanifest"
             ]
           }
         },
