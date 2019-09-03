@@ -1,21 +1,23 @@
 <mat-toolbar>
-    <mat-toolbar-row>
-      <span class="left-align-grid" *ngIf="isRecording == false">
-        <button mat-icon-button [disabled]="name == null" (click)="onStartRecord()"><mat-icon>perm_camera_mic</mat-icon></button>
-      </span>
-      <span class="left-align-grid" *ngIf="isRecording == true">
-          <button mat-icon-button (click)="onStopRecord()"><mat-icon>stop</mat-icon></button>
-      </span>
-      <span class="example2-fill-remaining-space"></span>
-      <span class="example-fill-remaining-space" *ngIf="isRecording==false">
-        <mat-form-field>
-          <input matInput [(ngModel)]="messageValue">
+    <mat-toolbar-row>  
+      <div class="example-fill-remaining-space" *ngIf="isRecording==false">
+        <mat-form-field style="width:330px !important">
+          <input matInput #chatMsg [(ngModel)]="messageValue" (keyup.enter)="onKeyUpEnter(chatMsg.value)">
         </mat-form-field>
-      </span>
-      <span class="example-fill-remaining-space" *ngIf="isRecording==true">
+      </div>
+      <div class="example-fill-remaining-space" *ngIf="isRecording==true">
         <mat-progress-bar mode="buffer">{{isRecording}}</mat-progress-bar>
-      </span>
+      </div>
+      <div class="right-align-grid" *ngIf="isRecording==false">
+          <button mat-icon-button [disabled]="name == null" (click)="onMessage()"><mat-icon>message</mat-icon></button>
+      </div>
+
+      <div class="end-align-grid" *ngIf="isRecording == false">
+          <button mat-icon-button [disabled]="name == null" (click)="onStartRecord()"><mat-icon>perm_camera_mic</mat-icon></button>
+      </div>
+      <div class="end-align-grid" *ngIf="isRecording == true">
+        <button mat-icon-button (click)="onStopRecord()"><mat-icon>stop</mat-icon></button>
+      </div>  
       
-      <span class="end-align-grid" *ngIf="isRecording==false"><button mat-icon-button [disabled]="name == null" (click)="onMessage()"><mat-icon>message</mat-icon></button></span>
     </mat-toolbar-row>
 </mat-toolbar>

@@ -2,9 +2,9 @@
     width: 100%;
 }
 
-.left-align-grid {
+.right-align-grid {
     position: absolute;
-    left: 5px;
+    right: 29px;
 }
 
 .end-align-grid {
@@ -15,7 +15,7 @@
 .example2-fill-remaining-space {
     /* This fills the remaining space, by using flexbox. 
     Every toolbar row uses a flexbox row layout. */
-    flex: 1 10%;
+    flex: 1 1 auto;
 }
   
 .example-fill-remaining-space {

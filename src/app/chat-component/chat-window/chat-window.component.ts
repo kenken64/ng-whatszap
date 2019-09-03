@@ -22,10 +22,10 @@ export class ChatWindowComponent implements OnInit{
   isContentLoader: boolean = true;
   public disabled: boolean = false;
   public type: string = 'component';
-  public config: PerfectScrollbarConfigInterface = {};
+  public config: PerfectScrollbarConfigInterface = {suppressScrollY: false, suppressScrollX: true, wheelPropagation: false};
 
-  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
-  @ViewChild('chatPS') chatPS?: PerfectScrollbarComponent;
+  @ViewChild(PerfectScrollbarComponent, { static: true }) componentRef?: PerfectScrollbarComponent;
+  @ViewChild('chatPS', { static: true }) chatPS?: PerfectScrollbarComponent;
   @Output() nameEvent = new EventEmitter<string>();
 
   constructor(public dialog: MatDialog, 

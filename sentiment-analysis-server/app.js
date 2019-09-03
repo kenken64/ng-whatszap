@@ -1,3 +1,6 @@
+'use strict';
+require('dotenv').config()
+
 const express = require("express");
 const admin = require("firebase-admin");
 const cors = require('cors');
@@ -8,7 +11,7 @@ var sentiment = new Sentiment();
 var serviceAccount = require('./credentials.json');
 const NODE_PORT = process.env.PORT;
 
-//"https://everythingaboutai-3f390.firebaseio.com"
+//"https://chat-app-6e112.firebaseio.com"
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: process.env.FIREBASE_DB_URL
@@ -23,7 +26,7 @@ const chats = db.collection('chat-sentiment-analysis');
 
 var observer = chats.onSnapshot( querySnapshot => {
     console.log(`Received query snapshot of size ${querySnapshot.size}`);
-    querySnapshot.docChanges.forEach(async change => {
+    querySnapshot.docChanges().forEach(async change => {
       if (change.doc.data().label) return;
       if (change.type === 'added') {
         console.log('New : ', change.doc.data());

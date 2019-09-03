@@ -1,8 +1,10 @@
 # ng-whatszap
 
-<img src="./demo.gif">
+```
+to be youtube guide
+```
 
-Visit my [Demo](https://kennethphang.asia)
+Visit my [Demo](https://whatszap.kennethphang.asia)
 ```
 npm install firebase @angular/fire --save
 ng add @angular/material
