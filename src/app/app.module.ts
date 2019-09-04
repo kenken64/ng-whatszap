@@ -8,6 +8,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { environment } from '../environments/environment';
 import { ChatModule } from './chat-component/chat-module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ResponsiveModule } from 'ngx-responsive'
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
+// services
+import { ChatService } from './services/chat.service';
+import { SentimentService } from './services/sentiment.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 import {
   MatInputModule,
@@ -26,12 +34,15 @@ import { ChatappComponent } from './chat-component/chatapp/chatapp.component';
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     FlexLayoutModule,
+    ResponsiveModule.forRoot(),
     FormsModule,
+    HttpClientModule,
     MatInputModule,
     MatDialogModule,
+    DeviceDetectorModule,
     ChatModule
   ],
-  providers: [],
+  providers: [ ChatService, SentimentService, DeviceDetectorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

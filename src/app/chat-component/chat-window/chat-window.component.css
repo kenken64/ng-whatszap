@@ -10,9 +10,10 @@
     margin: 20px;
     display: inline-block;
     position: relative;
-    width: 400px;
+    width: auto;
     height: auto;
     background-color:#e4c8f7;
+    box-shadow: 0 1px 2px #bbb;
 }
 
 .border{
@@ -255,21 +256,16 @@
 }
 
 .content-container {
-  position: relative;
-
-  min-height: 0;
-  padding: 8px;
-  margin: 12px 16px;
-  border: 1px solid #ccc;
+  
 }
 
 .message-list {
-    flex-grow: 1;
+    flex-grow: 2;
     overflow-y: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-end;
-  }
+}
 
 
 
@@ -309,14 +305,14 @@
   margin: 0;
 }
 
-img {
-    border: 1px solid #ddd; /* Gray border */
-    border-radius: 4px;  /* Rounded border */
-    padding: 5px; /* Some padding */
-    width: 340px; /* Set a small width */
+.img-fluid {
+    max-height:100%;
+    height:auto;
+    object-fit: contain;
 }
 
-/* Add a hover effect (blue shadow) */
-img:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+.fab-custom-button{
+    position: absolute;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0); 
 }

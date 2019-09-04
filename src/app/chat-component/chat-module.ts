@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+
 import {NgModule} from '@angular/core';
 
 import { ChatWindowComponent } from './chat-window/chat-window.component';

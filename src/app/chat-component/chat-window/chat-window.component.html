@@ -1,20 +1,19 @@
-<div class="content-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="stretch" fxFlex="auto">
-    <perfect-scrollbar #chatPS class="message-list" fxFlex="auto" [config]="config" [scrollIndicators]="true" (psXReachEnd)="onScrollEvent($event)" (psYReachEnd)="onScrollEvent($event)" (psXReachStart)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
-      <div class="scrollable-content">
-          <div *ngFor="let chat of chats" >
-                  <div class="talk-bubble tri-right round btm-left">
-                      <div class="talktext">
-                          <mat-chip-list><mat-chip>{{chat.from}}</mat-chip></mat-chip-list><br>
-                          <div *ngIf="chat.message_type==1">{{chat.message}}</div>
-                          <div *ngIf="chat.message_type==2"><img width="400" height="400" src="{{chat.imageUrl}}"></div>
-                          <div *ngIf="chat.message_type==3"><img width="400" height="400" src="{{chat.webcamUrl}}"></div>
-                          <div *ngIf="chat.message_type==4"><audio src="{{chat.audioUrl}}" controls> </audio></div>
-                          <br><strong>{{chat.message_date.toDate()| date:'short'}}</strong>
-                      </div>
-                  </div>
-          </div>    
-      </div>
-    </perfect-scrollbar>
-</div>
+<perfect-scrollbar #chatPS style="position: relative;max-width: 100%;" [style.max-height]="maxHeight" [config]="config" [scrollIndicators]="true" (psXReachEnd)="onScrollEvent($event)" (psYReachEnd)="onScrollEvent($event)" (psXReachStart)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
+    <div class="scrollable-content">
+        <div *ngFor="let chat of chats" >
+                <div class="talk-bubble tri-right round btm-left">
+                    <div class="talktext">
+                        <mat-chip-list><mat-chip>{{chat.from}}</mat-chip></mat-chip-list><br>
+                        <div *ngIf="chat.message_type==1">{{chat.message}}</div>
+                        <div *ngIf="chat.message_type==2"><img class="img-fluid" width="190" height="240" src="{{chat.imageUrl}}" #attachimg (click)="zoomImage(attachimg)"></div>
+                        <div *ngIf="chat.message_type==3"><img class="img-fluid" width="190" height="240" src="{{chat.webcamUrl}}" #webcamimg (click)="zoomImage(webcamimg)"></div>
+                        <div *ngIf="chat.message_type==4"><audio src="{{chat.audioUrl}}" controls> </audio></div>
+                        <br><strong>{{chat.message_date.toDate()| date:'short'}}</strong>
+                    </div>
+                </div>
+        </div>    
+    </div>
+</perfect-scrollbar>
+<a mat-icon-button [style.top]='topHeight' class="fab-custom-button" (click)="scrollBottom()" ><mat-icon aria-hidden="false">keyboard_arrow_down</mat-icon></a>
 
 <!--fxLayout="column" fxLayout.xs="row" fxLayoutWrap="wrap" fxLayoutAlign="start left" fxLayoutGap="10px"-->

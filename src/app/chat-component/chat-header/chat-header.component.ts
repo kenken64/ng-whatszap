@@ -65,6 +65,10 @@ export class ChatHeaderComponent implements OnInit {
     });
   }
 
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
   onChange(files, event) {
     let id = Guid.newGuid();
     console.log( files );
@@ -74,6 +78,7 @@ export class ChatHeaderComponent implements OnInit {
     const filePath = `${id}_${event.target.files[0].name}`;
     const task = this.storage.upload(filePath, file);
     console.log(task);
+    console.log(filePath);
     let chatMessage = {
       message_type: 2,
       message: null,
@@ -83,6 +88,11 @@ export class ChatHeaderComponent implements OnInit {
     }
     this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
       console.log(result);
+      this.delay(200);
+      this.chatSvc.getImageToken(filePath).then((fsResult)=>{
+        console.log(fsResult);
+        //console.log(fsResult.downloadTokens);
+      }).catch(error=>console.log(error));
     });
   }
 }

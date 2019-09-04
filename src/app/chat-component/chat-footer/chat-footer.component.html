@@ -1,7 +1,7 @@
 <mat-toolbar>
     <mat-toolbar-row>  
       <div class="example-fill-remaining-space" *ngIf="isRecording==false">
-        <mat-form-field style="width:330px !important">
+        <mat-form-field style="width:100% !important">
           <input matInput #chatMsg [(ngModel)]="messageValue" (keyup.enter)="onKeyUpEnter(chatMsg.value)">
         </mat-form-field>
       </div>
