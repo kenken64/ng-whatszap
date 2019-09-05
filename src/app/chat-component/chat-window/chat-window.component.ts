@@ -61,36 +61,78 @@ export class ChatWindowComponent implements OnInit{
 
     let ipphone5se = /iPhone OS 10_3_1/gi;
     let galaxys5 = /SM-G900P/gi; 
-    let googlePixel2 = /Pixel 2 XL/gi;
+    let googlePixel2xl = /Pixel 2 XL/gi;
+    let googlePixel2 = /Pixel 2 Build/gi;
     let iphone678 = /iPhone OS 11_0/gi;
     let ipad = /iPad/gi;
-    if (this.deviceInfo.userAgent.search(ipphone5se) != -1 ) { 
-      console.log("iphone 5 SE" ); 
-      this.maxHeight = "450px";
-    } 
-    if (this.deviceInfo.userAgent.search(galaxys5) != -1 ) { 
-      console.log("Samsung Galaxy s5" ); 
-      this.maxHeight = "520px";
-    }
-    if (this.deviceInfo.userAgent.search(googlePixel2) != -1 ) { 
-      console.log("Pixel 2" ); 
-      this.maxHeight = "710px";
-    }
     let innerWidth = window.innerWidth;
     let innerHeight = window.innerHeight;
     console.log(innerWidth);
     console.log(innerHeight);
+    
+    if (this.deviceInfo.userAgent.search(ipphone5se) != -1 ) { 
+      console.log("iphone 5 SE" ); 
+      if(innerWidth == 646 && innerHeight == 364){
+        this.maxHeight = "210px";
+      }else{
+        this.maxHeight = "458px";
+      } 
+    } 
+    if (this.deviceInfo.userAgent.search(galaxys5) != -1 ) { 
+      console.log("Samsung Galaxy s5" );
+      if(innerWidth == 718 && innerHeight == 404){
+        this.maxHeight = "240px";
+      } else {
+        this.maxHeight = "530px";
+      }  
+    }
+    if (this.deviceInfo.userAgent.search(googlePixel2xl) != -1 ) { 
+      console.log("Pixel 2 XL " ); 
+      if(innerWidth == 901 && innerHeight == 450){
+        console.log(".>>>")
+        this.maxHeight = "290px";
+      } else {
+        console.log(".>>")
+        this.maxHeight = "710px";
+      }  
+    }
+
+    if(this.deviceInfo.userAgent.search(googlePixel2) != -1){
+      console.log("Pixel 2" ); 
+      if(innerWidth == 809 && innerHeight == 455){
+        this.maxHeight = "288px";
+      }else{
+        console.log(".>>");
+        this.maxHeight = "625px";
+      }
+    }
     
     if (this.deviceInfo.userAgent.search(iphone678) != -1 ) { 
       console.log("iphone 6 7 8" ); 
       if(innerWidth == 453 && innerHeight == 806){
         this.maxHeight = "560px";
       }
+
       if(innerWidth == 493 && innerHeight == 875){
-        this.maxHeight = "620px";
+        this.maxHeight = "627px";
       }
+
       if(innerWidth == 453 && innerHeight == 981){
         this.maxHeight = "700px";
+      }
+
+      if(innerWidth == 745 && innerHeight == 419){
+        this.maxHeight = "253px";
+      }
+
+      if(innerWidth == 814 && innerHeight == 458){
+        console.log("landscape mode ..");
+        this.maxHeight = "295px";
+      }
+
+      if(innerWidth == 890 && innerHeight == 412){
+        console.log("landscape mode ..");
+        this.maxHeight = "255px";
       }
     }
 
@@ -102,6 +144,14 @@ export class ChatWindowComponent implements OnInit{
 
       if(innerWidth == 1102 && innerHeight == 1471){
         this.maxHeight = "1220px";
+      }
+
+      if(innerWidth == 1102 && innerHeight == 827){
+        this.maxHeight = "647px";
+      }
+
+      if(innerWidth == 1444 && innerHeight == 1083){
+        this.maxHeight = "900px";
       }
     }
 

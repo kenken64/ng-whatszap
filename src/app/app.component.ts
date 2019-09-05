@@ -11,5 +11,9 @@ export class AppComponent implements OnInit{
   constructor(){}
   
   ngOnInit(){
+    window.addEventListener("orientationchange", function() {
+      console.log(">>>> oriented!");
+      location.reload();
+    }, false);
   }
 }
