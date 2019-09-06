@@ -1,13 +1,14 @@
-<header class="site-menu">
-  <app-chat-header></app-chat-header>
-</header>
-<div class="content">
-  <app-chat-window (nameEvent)="receiveName($event)"></app-chat-window>
-</div> 
-<div class="footer">
-  <app-chat-footer></app-chat-footer>
+<div class="page">
+  <div class="page-header">
+    <app-chat-header></app-chat-header>
+  </div>
+  <div class="page-content">
+    <app-chat-window (nameEvent)="receiveName($event)"></app-chat-window>
+  </div> 
+  <div class="page-footer">
+    <app-chat-footer></app-chat-footer>
+  </div>  
 </div>
-
 
 
 <!--

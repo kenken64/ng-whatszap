@@ -24,7 +24,14 @@
     flex: 1 100%;
 }
 
-.mat-form-field-infix {
-    width: 900px !important;
+.mat-form-field.mat-form-field {
+    width: 54%;
 }
 
+.mat-form-field-infix {
+    width: 600px !important;
+}
+
+.example-margin {
+  margin: 0 10px;
+}

@@ -31,14 +31,4 @@ export class ChatService {
   sendMessage(chatMessage) {
     return of(this.chatsCollection.add(chatMessage));
   }
-
-  getImageToken(imagePath:string){
-    console.log(imagePath);
-    const params = new HttpParams();
-    return(
-      this.httpClient.get(`${environment.firebase_cms_url}${imagePath}`
-      , {params: params})
-      .toPromise()
-    );
-  }
 }

@@ -7,7 +7,7 @@
                         <div *ngIf="chat.message_type==1">{{chat.message}}</div>
                         <div *ngIf="chat.message_type==2"><img class="img-fluid" width="190" height="240" src="{{chat.imageUrl}}" #attachimg (click)="zoomImage(attachimg)"></div>
                         <div *ngIf="chat.message_type==3"><img class="img-fluid" width="190" height="240" src="{{chat.webcamUrl}}" #webcamimg (click)="zoomImage(webcamimg)"></div>
-                        <div *ngIf="chat.message_type==4"><audio src="{{chat.audioUrl}}" controls> </audio></div>
+                        <div *ngIf="chat.message_type==4"><audio src="{{ chat.audioUrl }}" controls> </audio></div>
                         <br><strong>{{chat.message_date.toDate()| date:'short'}}</strong>
                     </div>
                 </div>

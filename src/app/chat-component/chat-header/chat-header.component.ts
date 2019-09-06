@@ -4,7 +4,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { WebCamComponent } from 'ack-angular-webcam';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export interface WebcamDialogData {
   name: string;
@@ -19,11 +20,13 @@ export interface WebcamDialogData {
 export class ChatHeaderComponent implements OnInit {
   name: string = "";
   imageBinary: any;
-  @Output() success = new EventEmitter()
-  @Output() catch = new EventEmitter()
+  @Output() success = new EventEmitter();
+  @Output() catch = new EventEmitter();
+  downloadURL: Observable<string>;
+  uploadPercent: Observable<number>;
 
   constructor(public chatSvc: ChatService,
-    public storage: AngularFireStorage, 
+    public rfStorage: AngularFireStorage, 
     public dialog: MatDialog,
     private route : Router) { }
 
@@ -76,24 +79,32 @@ export class ChatHeaderComponent implements OnInit {
     console.log(event.target.files[0]);
     const file = event.target.files[0];
     const filePath = `${id}_${event.target.files[0].name}`;
-    const task = this.storage.upload(filePath, file);
-    console.log(task);
-    console.log(filePath);
-    let chatMessage = {
-      message_type: 2,
-      message: null,
-      message_date: new Date(),
-      from: this.name,
-      imageUrl: environment.firebase_cms_url + filePath  + environment.firebase_cms_url_postfix,
-    }
-    this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
-      console.log(result);
-      this.delay(200);
-      this.chatSvc.getImageToken(filePath).then((fsResult)=>{
-        console.log(fsResult);
-        //console.log(fsResult.downloadTokens);
-      }).catch(error=>console.log(error));
-    });
+    
+    console.log(file);
+    console.log("filePath :  " + filePath);
+    const fileRef = this.rfStorage.ref(filePath);
+    const task = this.rfStorage.upload(filePath, file)
+    
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe(
+      finalize(()=>{
+        this.downloadURL = fileRef.getDownloadURL();
+        console.log("DOWNLOAD URL > " + this.downloadURL);
+        this.downloadURL.subscribe((urlValue)=>{
+          console.log("DOWNLOAD URL > " + urlValue);
+          let chatMessage = {
+            message_type: 2,
+            message: null,
+            message_date: new Date(),
+            from: this.name,
+            imageUrl: urlValue,
+          }
+          this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
+            console.log("Message sent : " +  result);
+          });
+        }) 
+      })
+    ).subscribe();
   }
 }
 

@@ -231,6 +231,9 @@
     padding: 1em;
     text-align: left;
     line-height: 1.5em;
+    display: inline-block;
+    word-wrap: break-word;
+    width: 300px;
 }
 .talktext p{
     -webkit-margin-before: 0em;

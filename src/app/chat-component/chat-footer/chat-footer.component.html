@@ -1,12 +1,12 @@
 <mat-toolbar>
     <mat-toolbar-row>  
       <div class="example-fill-remaining-space" *ngIf="isRecording==false">
-        <mat-form-field style="width:100% !important">
+        <mat-form-field>
           <input matInput #chatMsg [(ngModel)]="messageValue" (keyup.enter)="onKeyUpEnter(chatMsg.value)">
         </mat-form-field>
       </div>
       <div class="example-fill-remaining-space" *ngIf="isRecording==true">
-        <mat-progress-bar mode="buffer">{{isRecording}}</mat-progress-bar>
+        <mat-progress-bar class="example-margin" mode="buffer">{{isRecording}}</mat-progress-bar>
       </div>
       <div class="right-align-grid" *ngIf="isRecording==false">
           <button mat-icon-button [disabled]="name == null" (click)="onMessage()"><mat-icon>message</mat-icon></button>

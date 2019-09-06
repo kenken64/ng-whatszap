@@ -5,7 +5,8 @@ import { SentimentService } from '../../services/sentiment.service';
 import { MatSnackBar } from '@angular/material';
 import { Guid } from '../../shared/util';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 declare var MediaRecorder: any;
 declare var window: any;
@@ -22,7 +23,9 @@ export class ChatFooterComponent implements OnInit {
   name: string = null;
   isRecording: boolean = false;
   mediaRecorder: any;
-  
+  downloadURL: Observable<string>;
+  uploadPercent: Observable<number>;
+
   constructor(private chatSvc: ChatService, 
     public snackBar: MatSnackBar,
     public storage: AngularFireStorage,
@@ -53,7 +56,7 @@ export class ChatFooterComponent implements OnInit {
   }
 
   onKeyUpEnter(messageVal: string){
-    console.log("on key up eneter !");
+    console.log("on key up enter !");
     console.log("messageVal  > " + messageVal);
     this.messageValue = messageVal;
     this.onMessage();
@@ -97,16 +100,26 @@ export class ChatFooterComponent implements OnInit {
     let id = Guid.newGuid();
     const filePath = `${id}.webm`;
     console.log(filePath);
-    let chatMessage = {
-      message_type: 4,
-      message: null,
-      message_date: new Date(),
-      from: this.name,
-      audioUrl: environment.firebase_cms_url + filePath  + environment.firebase_cms_url_postfix,
-    }
-    this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
-      console.log(result);
-      const task = this.storage.upload(filePath, e.data);
-    });
+    const fileRef = this.storage.ref(filePath);
+    
+    const task = this.storage.upload(filePath, e.data);
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe(
+      finalize(()=>{
+        this.downloadURL = fileRef.getDownloadURL();
+        this.downloadURL.subscribe((urlValue)=>{
+          let chatMessage = {
+            message_type: 4,
+            message: null,
+            message_date: new Date(),
+            from: this.name,
+            audioUrl: urlValue,
+          }
+          this.chatSvc.sendMessage(chatMessage).subscribe((result)=>{
+            console.log("Message sent : " +  result);
+          });
+        }) 
+      })
+    ).subscribe();
   }
 }

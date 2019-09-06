@@ -61,6 +61,7 @@ export class ChatWindowComponent implements OnInit{
 
     let ipphone5se = /iPhone OS 10_3_1/gi;
     let galaxys5 = /SM-G900P/gi; 
+    let samsung = /SAMSUNG/gi;
     let googlePixel2xl = /Pixel 2 XL/gi;
     let googlePixel2 = /Pixel 2 Build/gi;
     let iphone678 = /iPhone OS 11_0/gi;
@@ -79,13 +80,18 @@ export class ChatWindowComponent implements OnInit{
       } 
     } 
     if (this.deviceInfo.userAgent.search(galaxys5) != -1 ) { 
-      console.log("Samsung Galaxy s5" );
+      console.log("Samsung" );
       if(innerWidth == 718 && innerHeight == 404){
         this.maxHeight = "240px";
       } else {
         this.maxHeight = "530px";
-      }  
+      } 
     }
+
+    if(this.deviceInfo.userAgent.search(samsung) != -1){
+      
+    }
+
     if (this.deviceInfo.userAgent.search(googlePixel2xl) != -1 ) { 
       console.log("Pixel 2 XL " ); 
       if(innerWidth == 901 && innerHeight == 450){
@@ -154,7 +160,6 @@ export class ChatWindowComponent implements OnInit{
         this.maxHeight = "900px";
       }
     }
-
   }
 
   scrollBottom(){
